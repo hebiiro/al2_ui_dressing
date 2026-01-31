@@ -24,7 +24,7 @@ namespace apn::dark
 				// それを防ぐためにロックしておきます。
 				my::locker_t locker(this);
 
-				if (!__super::create(hive.instance, MAKEINTRESOURCE(IDD_CONFIG_DIALOG), nullptr))
+				if (!__super::create(hive.instance, MAKEINTRESOURCE(idd_config), nullptr))
 				{
 					hive.message_box(L"コンフィグダイアログの作成に失敗しました");
 
@@ -56,30 +56,30 @@ namespace apn::dark
 
 			my::locker_t locker(this);
 
-			set_text(IDC_JD_STYLE_FILE_NAME, hive.dark.style_file_name);
+			set_text(idc_dark_style_file_name, hive.dark.style_file_name);
 			set_check(idc_d2d_flag_figure, hive.d2d.flag_figure);
 			set_check(idc_d2d_flag_text, hive.d2d.flag_text);
-			set_check(IDC_JD_EXCLUDE_COMDLG32, hive.dark.exclude_comdlg32);
+			set_check(idc_dark_flag_exclude_comdlg32, hive.dark.flag_exclude_comdlg32);
 
-			set_check(IDC_ROUND_FLAG_USE, hive.round.flag_use);
-			set_int(IDC_ROUND_SIZE, hive.round.size);
+			set_check(idc_round_flag_use, hive.round.flag_use);
+			set_int(idc_round_size, hive.round.size);
 
-			set_check(IDC_BORDER_FLAG_3D_EDGE, hive.border.flag_3d_edge);
-			set_int(IDC_BORDER_WIDTH, hive.border.width);
+			set_check(idc_border_flag_3d_edge, hive.border.flag_3d_edge);
+			set_int(idc_border_width, hive.border.width);
 
-			set_check(IDC_GRADIENT_FLAG_USE, hive.gradient.flag_use);
-			set_check(IDC_GRADIENT_FLAG_END_ALPHA, hive.gradient.flag_end_alpha);
-			set_int(IDC_GRADIENT_END_ALPHA, hive.gradient.end_alpha);
+			set_check(idc_gradient_flag_use, hive.gradient.flag_use);
+			set_check(idc_gradient_flag_end_alpha, hive.gradient.flag_end_alpha);
+			set_int(idc_gradient_end_alpha, hive.gradient.end_alpha);
 
-			set_check(IDC_SHADOW_FLAG_USE, hive.shadow.flag_use);
-			set_check(IDC_SHADOW_FLAG_BLUR, hive.shadow.flag_blur);
-			set_int(IDC_SHADOW_OFFSET_X, hive.shadow.offset.x);
-			set_int(IDC_SHADOW_OFFSET_Y, hive.shadow.offset.y);
-			set_int(IDC_SHADOW_SIZE, hive.shadow.size);
+			set_check(idc_shadow_flag_use, hive.shadow.flag_use);
+			set_check(idc_shadow_flag_blur, hive.shadow.flag_blur);
+			set_int(idc_shadow_offset_x, hive.shadow.offset.x);
+			set_int(idc_shadow_offset_y, hive.shadow.offset.y);
+			set_int(idc_shadow_size, hive.shadow.size);
 
-			set_check(IDC_SCROLLBAR_ARROW_AS_BUTTON, hive.scrollbar.arrow_as_button);
-			set_check(IDC_SCROLLBAR_HAS_GRIPPER, hive.scrollbar.has_gripper);
-			set_int(IDC_SCROLLBAR_REDUCTION, hive.scrollbar.reduction);
+			set_check(idc_scrollbar_flag_arrow_as_button, hive.scrollbar.flag_arrow_as_button);
+			set_check(idc_scrollbar_flag_has_gripper, hive.scrollbar.flag_has_gripper);
+			set_int(idc_scrollbar_reduction, hive.scrollbar.reduction);
 
 			return TRUE;
 		}
@@ -93,30 +93,30 @@ namespace apn::dark
 
 			if (is_locked()) return FALSE;
 
-//			get_text(IDC_JD_STYLE_FILE_NAME, hive.dark.style_file_name);
+//			get_text(idc_dark_style_file_name, hive.dark.style_file_name);
 			get_check(idc_d2d_flag_figure, hive.d2d.flag_figure);
 			get_check(idc_d2d_flag_text, hive.d2d.flag_text);
-			get_check(IDC_JD_EXCLUDE_COMDLG32, hive.dark.exclude_comdlg32);
+			get_check(idc_dark_flag_exclude_comdlg32, hive.dark.flag_exclude_comdlg32);
 
-			get_check(IDC_ROUND_FLAG_USE, hive.round.flag_use);
-			get_int(IDC_ROUND_SIZE, hive.round.size);
+			get_check(idc_round_flag_use, hive.round.flag_use);
+			get_int(idc_round_size, hive.round.size);
 
-			get_check(IDC_BORDER_FLAG_3D_EDGE, hive.border.flag_3d_edge);
-			get_int(IDC_BORDER_WIDTH, hive.border.width);
+			get_check(idc_border_flag_3d_edge, hive.border.flag_3d_edge);
+			get_int(idc_border_width, hive.border.width);
 
-			get_check(IDC_GRADIENT_FLAG_USE, hive.gradient.flag_use);
-			get_check(IDC_GRADIENT_FLAG_END_ALPHA, hive.gradient.flag_end_alpha);
-			get_int(IDC_GRADIENT_END_ALPHA, hive.gradient.end_alpha);
+			get_check(idc_gradient_flag_use, hive.gradient.flag_use);
+			get_check(idc_gradient_flag_end_alpha, hive.gradient.flag_end_alpha);
+			get_int(idc_gradient_end_alpha, hive.gradient.end_alpha);
 
-			get_check(IDC_SHADOW_FLAG_USE, hive.shadow.flag_use);
-			get_check(IDC_SHADOW_FLAG_BLUR, hive.shadow.flag_blur);
-			get_int(IDC_SHADOW_OFFSET_X, hive.shadow.offset.x);
-			get_int(IDC_SHADOW_OFFSET_Y, hive.shadow.offset.y);
-			get_int(IDC_SHADOW_SIZE, hive.shadow.size);
+			get_check(idc_shadow_flag_use, hive.shadow.flag_use);
+			get_check(idc_shadow_flag_blur, hive.shadow.flag_blur);
+			get_int(idc_shadow_offset_x, hive.shadow.offset.x);
+			get_int(idc_shadow_offset_y, hive.shadow.offset.y);
+			get_int(idc_shadow_size, hive.shadow.size);
 
-			get_check(IDC_SCROLLBAR_ARROW_AS_BUTTON, hive.scrollbar.arrow_as_button);
-			get_check(IDC_SCROLLBAR_HAS_GRIPPER, hive.scrollbar.has_gripper);
-			get_int(IDC_SCROLLBAR_REDUCTION, hive.scrollbar.reduction);
+			get_check(idc_scrollbar_flag_arrow_as_button, hive.scrollbar.flag_arrow_as_button);
+			get_check(idc_scrollbar_flag_has_gripper, hive.scrollbar.flag_has_gripper);
+			get_int(idc_scrollbar_reduction, hive.scrollbar.reduction);
 
 			if (redraw) app->redraw();
 
@@ -141,7 +141,7 @@ namespace apn::dark
 
 					switch (control_id)
 					{
-					case IDC_JD_STYLE_FILE_NAME_REF:
+					case idc_dark_style_file_name_ref:
 						{
 							// ユーザーが指定したスタイルファイルのパスを取得します。
 							auto file_name = get_open_file_name(
@@ -156,11 +156,7 @@ namespace apn::dark
 
 							break;
 						}
-					case IDC_JD_EXCLUDE_COMDLG32:
-					case IDC_ETC_DEFAULT_MOUSE_ACTIVATE:
-					case IDC_FONTS_USE_ON_MENU:
-					case IDC_FONTS_USE_ON_LISTBOX:
-					case IDC_FONTS_USE_ON_LISTVIEW:
+					case idc_dark_flag_exclude_comdlg32:
 						{
 							from_ui(FALSE);
 
@@ -168,45 +164,29 @@ namespace apn::dark
 						}
 					case idc_d2d_flag_figure:
 					case idc_d2d_flag_text:
-					case IDC_ROUND_FLAG_USE:
-					case IDC_BORDER_FLAG_3D_EDGE:
-					case IDC_GRADIENT_FLAG_USE:
-					case IDC_GRADIENT_FLAG_END_ALPHA:
-					case IDC_SHADOW_FLAG_USE:
-					case IDC_SHADOW_FLAG_BLUR:
-					case IDC_SCROLLBAR_ARROW_AS_BUTTON:
-					case IDC_SCROLLBAR_HAS_GRIPPER:
+					case idc_round_flag_use:
+					case idc_border_flag_3d_edge:
+					case idc_gradient_flag_use:
+					case idc_gradient_flag_end_alpha:
+					case idc_shadow_flag_use:
+					case idc_shadow_flag_blur:
+					case idc_scrollbar_flag_arrow_as_button:
+					case idc_scrollbar_flag_has_gripper:
 						{
 							from_ui(TRUE);
 
 							break;
 						}
-					case IDC_ROUND_SIZE:
-					case IDC_BORDER_WIDTH:
-					case IDC_GRADIENT_END_ALPHA:
-					case IDC_SHADOW_OFFSET_X:
-					case IDC_SHADOW_OFFSET_Y:
-					case IDC_SHADOW_SIZE:
-					case IDC_SCROLLBAR_REDUCTION:
+					case idc_round_size:
+					case idc_border_width:
+					case idc_gradient_end_alpha:
+					case idc_shadow_offset_x:
+					case idc_shadow_offset_y:
+					case idc_shadow_size:
+					case idc_scrollbar_reduction:
 						{
 							if (code == EN_UPDATE)
 								from_ui(TRUE);
-
-							break;
-						}
-					case IDC_FONTS_WINDOW_WIDTH:
-					case IDC_FONTS_WINDOW_HEIGHT:
-					case IDC_FONTS_ITEM_HEIGHT:
-					case IDC_FONTS_FONT_HEIGHT:
-					case IDC_FONTS_SAMPLE_TEXT_FORMAT:
-					case IDC_DIALOG_NAME_NEW_PROJECT:
-					case IDC_DIALOG_NAME_NEW_SCENE:
-					case IDC_DIALOG_NAME_SET_SCENE:
-					case IDC_DIALOG_NAME_SET_LAYER_NAME:
-					case IDC_DIALOG_NAME_SET_FONT_MENU:
-						{
-							if (code == EN_UPDATE)
-								from_ui(FALSE);
 
 							break;
 						}
@@ -224,16 +204,8 @@ namespace apn::dark
 
 						switch (edit_id)
 						{
-						case IDC_SLIMBAR_BUTTON_WIDTH:
-							{
-								auto value = get_int(edit_id);
-								value += (nm->iDelta > 0) ? -10 : +10;
-								value = std::clamp(value, 0, +1000);
-								set_int(edit_id, value);
-								break;
-							}
-						case IDC_BORDER_WIDTH:
-						case IDC_SHADOW_SIZE:
+						case idc_border_width:
+						case idc_shadow_size:
 							{
 								auto value = get_int(edit_id);
 								value += (nm->iDelta > 0) ? -1 : +1;
@@ -241,9 +213,9 @@ namespace apn::dark
 								set_int(edit_id, value);
 								break;
 							}
-						case IDC_ROUND_SIZE:
-						case IDC_GRADIENT_END_ALPHA:
-						case IDC_SCROLLBAR_REDUCTION:
+						case idc_round_size:
+						case idc_gradient_end_alpha:
+						case idc_scrollbar_reduction:
 							{
 								auto value = get_int(edit_id);
 								value += (nm->iDelta > 0) ? -10 : +10;
@@ -251,8 +223,8 @@ namespace apn::dark
 								set_int(edit_id, value);
 								break;
 							}
-						case IDC_SHADOW_OFFSET_X:
-						case IDC_SHADOW_OFFSET_Y:
+						case idc_shadow_offset_x:
+						case idc_shadow_offset_y:
 							{
 								auto value = get_int(edit_id);
 								value += (nm->iDelta > 0) ? -10 : +10;

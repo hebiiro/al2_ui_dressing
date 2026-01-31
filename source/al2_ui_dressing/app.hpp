@@ -226,7 +226,7 @@ namespace apn::dark
 			hive.dark.style_file_name = style_file_name;
 
 			// ダイアログコントロールを更新します。
-			config_dialog.set_text(IDC_JD_STYLE_FILE_NAME, hive.dark.style_file_name);
+			config_dialog.set_text(idc_dark_style_file_name, hive.dark.style_file_name);
 
 			// スタイルファイルの監視をリセットします。
 			reset_style_file_watcher();

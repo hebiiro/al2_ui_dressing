@@ -10,7 +10,7 @@ namespace apn::dark::kuro::paint
 		//
 		// TRUEの場合は矢印をボタンのように描画します。
 		//
-		BOOL arrow_as_button = FALSE;
+		BOOL flag_arrow_as_button = FALSE;
 
 		//
 		// マテリアルの初期化処理を実行します。

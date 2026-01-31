@@ -81,7 +81,7 @@ namespace apn::dark::kuro::hook
 				if (!result) return FALSE;
 
 				// ファイル選択ダイアログ以降にも適用する場合は
-				if (!hive.dark.exclude_comdlg32)
+				if (!hive.dark.flag_exclude_comdlg32)
 				{
 					// 黒窓の設定ファイルを構築します。
 					if (darken_window.deploy_setting_files()) return result;

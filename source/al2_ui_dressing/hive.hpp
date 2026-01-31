@@ -79,7 +79,7 @@ namespace apn::dark
 			//
 			// TRUEの場合はコモンダイアログをダークモード化から除外します。
 			//
-			BOOL exclude_comdlg32 = FALSE;
+			BOOL flag_exclude_comdlg32 = FALSE;
 		} dark;
 
 		//
@@ -106,12 +106,12 @@ namespace apn::dark
 			//
 			// TRUEの場合は矢印をボタンのように描画します。
 			//
-			BOOL arrow_as_button = FALSE;
+			BOOL flag_arrow_as_button = FALSE;
 
 			//
 			// TRUEの場合はつまみのグリッパーを描画します。
 			//
-			BOOL has_gripper = FALSE;
+			BOOL flag_has_gripper = FALSE;
 
 			//
 			// スクロールバーの縮小率です。%単位です。
@@ -221,7 +221,7 @@ namespace apn::dark
 			if (main_thread_id != ::GetCurrentThreadId()) return FALSE;
 
 			// コモンダイアログを除外する場合は
-			if (dark.exclude_comdlg32)
+			if (dark.flag_exclude_comdlg32)
 			{
 				// コモンダイアログが表示されていない場合は有効です。
 				return comdlg32_visible_count == 0;

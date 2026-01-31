@@ -44,7 +44,7 @@ namespace apn::dark::kuro::theme
 
 			auto rc = *arg_rc;
 
-			if (hive.scrollbar.arrow_as_button)
+			if (hive.scrollbar.flag_arrow_as_button)
 			{
 				auto ratio = get_ratio();
 				::InflateRect(&rc, -int(my::get_width(rc) * ratio), -int(my::get_height(rc) * ratio));
@@ -66,7 +66,7 @@ namespace apn::dark::kuro::theme
 
 			auto rc = *arg_rc;
 
-			if (hive.scrollbar.arrow_as_button)
+			if (hive.scrollbar.flag_arrow_as_button)
 			{
 				auto ratio = get_ratio();
 				::InflateRect(&rc, -int(my::get_width(rc) * ratio), -int(my::get_height(rc) * ratio));
@@ -176,7 +176,7 @@ namespace apn::dark::kuro::theme
 		//
 		BOOL draw_horz_gripper(HDC dc, LPCRECT arg_rc, int part_id, int state_id)
 		{
-			if (!hive.scrollbar.has_gripper) return FALSE;
+			if (!hive.scrollbar.flag_has_gripper) return FALSE;
 
 			auto rc = *arg_rc;
 			auto ratio = get_ratio();
@@ -195,7 +195,7 @@ namespace apn::dark::kuro::theme
 		//
 		BOOL draw_vert_gripper(HDC dc, LPCRECT arg_rc, int part_id, int state_id)
 		{
-			if (!hive.scrollbar.has_gripper) return FALSE;
+			if (!hive.scrollbar.flag_has_gripper) return FALSE;
 
 			auto rc = *arg_rc;
 			auto ratio = get_ratio();

@@ -54,7 +54,7 @@ namespace apn::dark
 			MY_TRACE_FUNC("");
 
 //			read_string(root, "dark.custom_color_file_name", hive.dark.custom_color_file_name);
-			read_bool(root, "dark.exclude_comdlg32", hive.dark.exclude_comdlg32);
+			read_bool(root, "dark.flag_exclude_comdlg32", hive.dark.flag_exclude_comdlg32);
 
 			return TRUE;
 		}
@@ -67,7 +67,7 @@ namespace apn::dark
 			MY_TRACE_FUNC("");
 
 //			write_string(root, "dark.custom_color_file_name", hive.dark.custom_color_file_name);
-			write_bool(root, "dark.exclude_comdlg32", hive.dark.exclude_comdlg32);
+			write_bool(root, "dark.flag_exclude_comdlg32", hive.dark.flag_exclude_comdlg32);
 
 			return TRUE;
 		}
@@ -106,8 +106,8 @@ namespace apn::dark
 			MY_TRACE_FUNC("");
 
 			read_int(root, "scrollbar.reduction", hive.scrollbar.reduction);
-			read_bool(root, "scrollbar.arrow_as_button", hive.scrollbar.arrow_as_button);
-			read_bool(root, "scrollbar.has_gripper", hive.scrollbar.has_gripper);
+			read_bool(root, "scrollbar.flag_arrow_as_button", hive.scrollbar.flag_arrow_as_button);
+			read_bool(root, "scrollbar.flag_has_gripper", hive.scrollbar.flag_has_gripper);
 
 			return TRUE;
 		}
@@ -120,8 +120,8 @@ namespace apn::dark
 			MY_TRACE_FUNC("");
 
 			write_int(root, "scrollbar.reduction", hive.scrollbar.reduction);
-			write_bool(root, "scrollbar.arrow_as_button", hive.scrollbar.arrow_as_button);
-			write_bool(root, "scrollbar.has_gripper", hive.scrollbar.has_gripper);
+			write_bool(root, "scrollbar.flag_arrow_as_button", hive.scrollbar.flag_arrow_as_button);
+			write_bool(root, "scrollbar.flag_has_gripper", hive.scrollbar.flag_has_gripper);
 
 			return TRUE;
 		}
