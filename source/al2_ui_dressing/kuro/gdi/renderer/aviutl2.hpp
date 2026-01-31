@@ -36,19 +36,6 @@ namespace apn::dark::kuro::gdi
 		{
 			MY_TRACE_FUNC("{/hex}, {/}, {/hex}, {/hex}", hwnd, my::message_to_string(message), w_param, l_param);
 
-			switch (message)
-			{
-			case WM_CLOSE:
-				{
-					MY_TRACE_FUNC("WM_CLOSE");
-
-					// コンフィグをファイルに書き込みます。
-					app->write_config();
-
-					break;
-				}
-			}
-
 			if (message == hive.c_message.c_post_init)
 			{
 				// 初期化後処理を実行します。

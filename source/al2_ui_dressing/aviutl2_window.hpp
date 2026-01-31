@@ -60,19 +60,5 @@ namespace apn::dark
 			}, 0);
 #endif
 		}
-/*
-		//
-		// コンフィグをaviutl2ウィンドウに適用します。
-		//
-		BOOL apply_config()
-		{
-			MY_TRACE_FUNC("");
-
-			// aviutl2ウィンドウを最前面にします。
-			::SetForegroundWindow(hive.aviutl2_window);
-
-			return TRUE;
-		}
-*/
 	} aviutl2_window;
 }

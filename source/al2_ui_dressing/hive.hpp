@@ -270,7 +270,7 @@ namespace apn::dark
 		// メッセージボックスを表示します。
 		//
 		int32_t message_box(const std::wstring& text, HWND hwnd = nullptr, int32_t type = MB_OK | MB_ICONWARNING) {
-			if (!hwnd) hwnd = plugin_window;
+			if (!hwnd) hwnd = aviutl2_window;
 			return ::MessageBoxW(hwnd, text.c_str(), version.information.c_str(), type);
 		}
 	} hive;

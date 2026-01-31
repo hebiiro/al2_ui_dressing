@@ -39,18 +39,13 @@ namespace apn::dark
 			hive.plugin_window = config_dialog;
 
 			// コンフィグをファイルから読み込みます。
-			// ※コンフィグファイルへの書き込みは
-			// aviutl2ウィンドウが終了するときに実行されます。
-			read_config();
+			config_io.read();
 
 			// スタイルファイルの監視をリセットします。
 			reset_style_file_watcher();
 
 			// カスタムカラーファイルの監視をリセットします。
 			reset_custom_color_file_watcher();
-
-			// コンフィグをaviutl2ウィンドウに適用します。
-//			aviutl2_window.apply_config();
 
 			// 初期化後メッセージをポストします。
 			::PostMessage(hive.aviutl2_window, hive.c_message.c_post_init, 0, 0);
@@ -83,6 +78,9 @@ namespace apn::dark
 		{
 			MY_TRACE_FUNC("");
 
+			// コンフィグをファイルに書き込みます。
+			config_io.write();
+
 			// 各種終了処理を実行します。
 			config_dialog.exit();
 			kuro::theme::manager.exit();
@@ -110,26 +108,6 @@ namespace apn::dark
 			test_dialog_t dialog; dialog.do_modal();
 #endif
 			return TRUE;
-		}
-
-		//
-		// コンフィグファイルを読み込みます。
-		//
-		virtual BOOL read_config() override
-		{
-			MY_TRACE_FUNC("");
-
-			return config_io.read();
-		}
-
-		//
-		// コンフィグファイルに書き込みます。
-		//
-		virtual BOOL write_config() override
-		{
-			MY_TRACE_FUNC("");
-
-			return config_io.write();
 		}
 
 		//
