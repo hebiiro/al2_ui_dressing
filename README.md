@@ -1,11 +1,12 @@
 ﻿# 🎉AviUtl2 UIドレッシングMOD
 
 * aviutl2の見た目(UI)を統一するMODです。
-* aviutl2の汎用プラグインの形式になっていますが、実際には見た目を変えるタイプのMODです。
+* aviutl2の入力プラグインの形式になっていますが、実際には見た目を変えるタイプのMODです。
 * 「ドレッシング」には「化粧仕上げ」「応急手当」といった意味があるらしいです。
 
+![AviUtl2 UIドレッシングMOD](images/r1.png)
+
 > [!IMPORTANT]
-> * **`ダークモード化MOD`と競合するので、先にアンインストールしてください。**
 > * 古い出力プラグインのUIには対応していません。
 >	* `コモンダイアログを除外`にチェックを入れるか、<br>
 >	対応バージョンの出力プラグインを使用してください。
@@ -13,33 +14,27 @@
 ## 🚧注意事項
 
 * 見た目を変えるのはメインスレッドのUIだけです。
-	* 「ファイルのプロパティ」ダイアログなどは対象外です。
-* `データフォルダ`とは`C:\ProgramData\aviutl2`または`aviutl2.exeがあるフォルダ\data`のことです。
-* `プラグインフォルダ`とは`データフォルダ\Plugin`のことです。
+* 「ファイルのプロパティ」ダイアログなどは対象外です。
 
 ## 🚀インストール
 
 * `プラグインフォルダ`に以下のファイルを入れてください。
 	* `al2` ✏️フォルダ
-		* `al2_ui_dressing.aux2` ✏️汎用プラグインファイル
+		* `al2_ui_dressing.aui2` ✏️入力プラグインファイル
 		* `al2_ui_dressing` ✏️フォルダ
 			* `DarkenWindow.aul` ✏️互換用ダミーファイル
 			* `assets` ✏️フォルダ
 				* `custom_color.conf` ✏️カスタムスタイルの初期値
-* (上記ファイルは`al2_ui_dressing.au2pkg.zip`ファイル内の`Plugin`フォルダに入っています)
----
-* または、`al2_ui_dressing.au2pkg.zip`ファイルをaviutl2のプレビュー画面にD&Dしてください。
-* このとき「`al2`フォルダが使用中です」のようなダイアログが表示された場合は「スキップ」を選択してください。
 
 ## 🔥アンインストール
 
 * `プラグインフォルダ`から以下のファイルを削除してください。
 	* `al2` ✏️フォルダ
-		* `al2_ui_dressing.aux2` ✏️このファイルを削除
+		* `al2_ui_dressing.aui2` ✏️このファイルを削除
 		* `al2_ui_dressing` ✏️このフォルダを削除
 	* `DarkenWindow` ✏️このフォルダを削除
 
-## 🔧設定
+## 🔧設定項目
 
 * `ダークモード化の設定`
 	* `スタイルファイルのパス`✏️現在開いているスタイルファイルのパスが表示されます。
@@ -75,7 +70,7 @@
 
 ### 🏷️設定を初期化する
 
-1. aviutl2を起動していない状態で`プラグインフォルダ\al2\al2_ui_dressing\config\.json`を削除します。
+1. aviutl2を起動していない状態で`プラグインフォルダ\al2\al2_ui_dressing\config\al2_ui_dressing.json`を削除します。
 
 ## 📝スタイルファイル
 
@@ -86,7 +81,7 @@
 
 ## 📝独自スタイルファイル
 
-1. `プラグインフォルダ\al2\al2_ui_dressing\custom_color.conf`をテキストエディタで編集します。
+1. `プラグインフォルダ\al2\al2_ui_dressing\config\custom_color.conf`をテキストエディタで編集します。
 
 > [!IMPORTANT]
 > * メニューなど一部の配色だけ変更できます。aviutl2本体の配色は変更できません。
@@ -177,25 +172,8 @@ HotTextShadow=ff000080
 
 ## 🔖更新履歴
 
+* 🔖r2 #2026年02月03日
+	* 🚚サブモジュール化
+
 * 🔖r1 #2026年01月31日
 	* 🎉初版
-
-## ⚗️動作確認
-
-* AviUtl ExEdit2 beta30a https://spring-fragrance.mints.ne.jp/aviutl/
-
-## 💳クレジット
-
-* AviUtl ExEdit2 Plugin SDK https://spring-fragrance.mints.ne.jp/aviutl/
-* Microsoft Research Detours Package https://github.com/microsoft/Detours
-* JSON for Modern C++ https://github.com/nlohmann/json
-
-## 👽️作成者情報
- 
-* 作成者 - 蛇色 (へびいろ)
-* GitHub - https://github.com/hebiiro
-* X - https://x.com/io_hebiiro
-
-## 🚨免責事項
-
-この作成物および同梱物を使用したことによって生じたすべての障害・損害・不具合等に関しては、私と私の関係者および私の所属するいかなる団体・組織とも、一切の責任を負いません。各自の責任においてご使用ください。
