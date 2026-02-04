@@ -1,4 +1,4 @@
-﻿# 🎉AviUtl2 UIドレッシングMOD
+﻿# 🐍AviUtl2 UIドレッシングMOD
 
 * aviutl2の見た目(UI)を統一するMODです。
 * aviutl2の入力プラグインの形式になっていますが、実際には見た目を変えるタイプのMODです。
