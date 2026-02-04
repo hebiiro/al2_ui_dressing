@@ -393,4 +393,9 @@
       <Filter>resource</Filter>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="package.txt">
+      <Filter>docs</Filter>
+    </Text>
+  </ItemGroup>
 </Project>
