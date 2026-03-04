@@ -5,15 +5,13 @@ namespace apn::dark
 	//
 	// このクラスはアプリケーションのインターフェイスです。
 	//
-	inline struct app_interface_t
+	inline struct app_interface_t : app_base_t
 	{
 		//
 		// コンストラクタです。
 		//
 		app_interface_t() { app = this; }
 
-		virtual BOOL dll_init() = 0;
-		virtual BOOL dll_exit() = 0;
 		virtual BOOL post_init() = 0;
 		virtual BOOL redraw() = 0;
 		virtual BOOL set_style_file_name(const std::wstring& style_file_name) = 0;
