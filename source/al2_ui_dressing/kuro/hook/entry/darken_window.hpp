@@ -38,20 +38,11 @@ namespace apn::dark::kuro::hook
 
 			// APIフックを開始します。
 			{
-				DetourTransactionBegin();
-				DetourUpdateThread(::GetCurrentThread());
-
 				auto kernel32 = ::GetModuleHandleW(L"kernel32.dll");
 				MY_TRACE_HEX(kernel32);
 
+				my::hook::detours detours;
 				my::hook::attach(EnumProcessModules, ::GetProcAddress(kernel32, "K32EnumProcessModules"));
-
-				if (DetourTransactionCommit() != NO_ERROR)
-				{
-					MY_TRACE("APIフックに失敗しました\n");
-
-					return FALSE;
-				}
 			}
 
 			return TRUE;
@@ -63,6 +54,17 @@ namespace apn::dark::kuro::hook
 		virtual BOOL on_exit() override
 		{
 			MY_TRACE_FUNC("");
+
+			// APIフックを終了します。
+			{
+				my::hook::detours detours;
+				my::hook::detach(EnumProcessModules);
+			}
+
+			// 黒窓のダミーをアンロードします。
+			{
+				::FreeLibrary(dummy), dummy = nullptr;
+			}
 
 			return TRUE;
 		}

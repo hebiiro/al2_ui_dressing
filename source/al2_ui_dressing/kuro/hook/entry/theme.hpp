@@ -14,39 +14,34 @@ namespace apn::dark::kuro::hook
 		{
 			MY_TRACE_FUNC("");
 
-			DetourTransactionBegin();
-			DetourUpdateThread(::GetCurrentThread());
-
 			auto dpi = ::GetDpiForSystem();
 			MY_TRACE_INT(dpi);
 
-			my::hook::attach(GetThemeColor);
-#if 0
-			my::hook::attach(GetThemeSysColor);
-			my::hook::attach(GetThemeSysColorBrush);
-			my::hook::attach(DrawThemeParentBackground);
-#endif
-#if 1
-			my::hook::attach(DrawThemeBackground);
-			my::hook::attach(DrawThemeBackgroundEx);
-			my::hook::attach(DrawThemeText);
-			my::hook::attach(DrawThemeTextEx);
-#endif
-#if 0
-			my::hook::attach(DrawThemeIcon);
-			my::hook::attach(DrawThemeEdge);
-#endif
-#if 1
-			my::hook::attach(OpenThemeData);
-			my::hook::attach(OpenThemeDataForDpi);
-			my::hook::attach(OpenThemeDataEx);
-			my::hook::attach(SetWindowTheme);
-#endif
-			if (DetourTransactionCommit() != NO_ERROR)
+			// APIフックを開始します。
 			{
-				MY_TRACE("APIフックに失敗しました\n");
-
-				return FALSE;
+				my::hook::detours detours;
+				my::hook::attach(GetThemeColor);
+#if 0
+				my::hook::attach(GetThemeSysColor);
+				my::hook::attach(GetThemeSysColorBrush);
+				my::hook::attach(DrawThemeParentBackground);
+#endif
+#if 1
+				my::hook::attach(DrawThemeBackground);
+				my::hook::attach(DrawThemeBackgroundEx);
+				my::hook::attach(DrawThemeText);
+				my::hook::attach(DrawThemeTextEx);
+#endif
+#if 0
+				my::hook::attach(DrawThemeIcon);
+				my::hook::attach(DrawThemeEdge);
+#endif
+#if 1
+				my::hook::attach(OpenThemeData);
+				my::hook::attach(OpenThemeDataForDpi);
+				my::hook::attach(OpenThemeDataEx);
+				my::hook::attach(SetWindowTheme);
+#endif
 			}
 
 			hive.orig.GetThemeColor = GetThemeColor.orig_proc;
@@ -67,6 +62,33 @@ namespace apn::dark::kuro::hook
 		virtual BOOL on_exit() override
 		{
 			MY_TRACE_FUNC("");
+
+			// APIフックを終了します。
+			{
+				my::hook::detours detours;
+				my::hook::detach(GetThemeColor);
+#if 0
+				my::hook::detach(GetThemeSysColor);
+				my::hook::detach(GetThemeSysColorBrush);
+				my::hook::detach(DrawThemeParentBackground);
+#endif
+#if 1
+				my::hook::detach(DrawThemeBackground);
+				my::hook::detach(DrawThemeBackgroundEx);
+				my::hook::detach(DrawThemeText);
+				my::hook::detach(DrawThemeTextEx);
+#endif
+#if 0
+				my::hook::detach(DrawThemeIcon);
+				my::hook::detach(DrawThemeEdge);
+#endif
+#if 1
+				my::hook::detach(OpenThemeData);
+				my::hook::detach(OpenThemeDataForDpi);
+				my::hook::detach(OpenThemeDataEx);
+				my::hook::detach(SetWindowTheme);
+#endif
+			}
 
 			return TRUE;
 		}
