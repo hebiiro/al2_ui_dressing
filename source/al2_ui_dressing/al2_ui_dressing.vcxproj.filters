@@ -59,12 +59,6 @@
     <Filter Include="_\root\au2pkg">
       <UniqueIdentifier>{e2bd02a5-a5f4-40dc-8fd0-71194ce2ad9a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="_\root\au2pkg\Language">
-      <UniqueIdentifier>{46d26222-7159-4a89-8eb7-bf6e8175603e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="_\root\au2pkg\Language\Template">
-      <UniqueIdentifier>{e42b792d-6b93-4d01-ab28-b1d631be1249}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -395,9 +389,6 @@
     </None>
     <None Include="..\..\LICENSE">
       <Filter>_\root</Filter>
-    </None>
-    <None Include="..\..\au2pkg\Language\Template\al2_ui_dressing.aul2">
-      <Filter>_\root\au2pkg\Language\Template</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

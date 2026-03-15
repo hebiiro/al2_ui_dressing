@@ -284,7 +284,6 @@
   <ItemGroup>
     <None Include="..\..\.gitattributes" />
     <None Include="..\..\.gitignore" />
-    <None Include="..\..\au2pkg\Language\Template\al2_ui_dressing.aul2" />
     <None Include="..\..\CONTRIBUTING.md" />
     <None Include="..\..\CREDITS.md" />
     <None Include="..\..\LICENSE" />
