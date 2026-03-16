@@ -56,15 +56,6 @@
     <Filter Include="_\root">
       <UniqueIdentifier>{a151abcc-e007-4cef-af06-e3b5a0ca4d00}</UniqueIdentifier>
     </Filter>
-    <Filter Include="_\root\au2pkg">
-      <UniqueIdentifier>{e2bd02a5-a5f4-40dc-8fd0-71194ce2ad9a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="_\root\au2pkg\Language">
-      <UniqueIdentifier>{46d26222-7159-4a89-8eb7-bf6e8175603e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="_\root\au2pkg\Language\Template">
-      <UniqueIdentifier>{e42b792d-6b93-4d01-ab28-b1d631be1249}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -396,18 +387,10 @@
     <None Include="..\..\LICENSE">
       <Filter>_\root</Filter>
     </None>
-    <None Include="..\..\au2pkg\Language\Template\al2_ui_dressing.aul2">
-      <Filter>_\root\au2pkg\Language\Template</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="resource.rc">
       <Filter>_\resource</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\..\au2pkg\package.txt">
-      <Filter>_\root\au2pkg</Filter>
-    </Text>
   </ItemGroup>
 </Project>

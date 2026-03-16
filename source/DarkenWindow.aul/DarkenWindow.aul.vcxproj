@@ -98,7 +98,10 @@
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetName)"</Command>
+      <Command>copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetName)"
+mkdir "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing" 2&gt;nul
+copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\$(TargetName)"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -123,7 +126,10 @@
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetName)"</Command>
+      <Command>copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetName)"
+mkdir "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing" 2&gt;nul
+copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\$(TargetName)"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -142,7 +148,10 @@
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetName)"</Command>
+      <Command>copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetName)"
+mkdir "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing" 2&gt;nul
+copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\$(TargetName)"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -165,7 +174,10 @@
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetName)"</Command>
+      <Command>copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetName)"
+mkdir "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing" 2&gt;nul
+copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\$(TargetName)"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
