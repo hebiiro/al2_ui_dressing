@@ -69,22 +69,33 @@ namespace apn::dark::kuro::theme
 						auto hwnd = ::WindowFromDC(dc);
 						MY_TRACE_HWND(hwnd);
 
+						my::gdi::unique_ptr<HBRUSH> brush(::CreateSolidBrush(RGB(255, 0, 0)));
+
+						::FillRect(dc, rc, brush.get());
+
+						return S_OK;
+
 						break;
 					}
+#endif
 				case MENU_POPUPBORDERS:
 					{
 						// ポップアップメニューのボーダーを描画します。
 
 						MY_TRACE("MENU_POPUPBORDERS\n");
+#if 0 // テスト用コードです。
+						my::gdi::unique_ptr<HBRUSH> brush(::CreateSolidBrush(RGB(0, 255, 0)));
 
-						auto rc2 = *rc;
+						::FillRect(dc, rc, brush.get());
 
-						if (paint::stylus.draw_rect(dc, &rc2, palette, part_id, state_id))
+						return S_OK;
+#else
+						// 縁が太くなりすぎてしまうので、背景色で描画します。
+						if (paint::stylus.draw_rect(dc, rc, palette, MENU_POPUPBACKGROUND, state_id))
 							return S_OK;
-
+#endif
 						break;
 					}
-#endif
 				case MENU_POPUPGUTTER:
 					{
 						// ポップアップメニューの背景左側を描画します。
