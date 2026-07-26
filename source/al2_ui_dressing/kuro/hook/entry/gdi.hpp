@@ -82,15 +82,15 @@ namespace apn::dark::kuro::hook
 			// APIフックを終了します。
 			{
 				my::hook::detours detours;
-				my::hook::attach(Rectangle);
-				my::hook::attach(FillRect);
-				my::hook::attach(DrawEdge);
-				my::hook::attach(DrawFocusRect);
-				my::hook::attach(ExtTextOutW);
-				my::hook::attach(GetSysColor);
-				my::hook::attach(GetSysColorBrush);
-				my::hook::attach(DrawTextW);
-				my::hook::attach(DrawTextExW);
+				my::hook::detach(Rectangle);
+				my::hook::detach(FillRect);
+				my::hook::detach(DrawEdge);
+				my::hook::detach(DrawFocusRect);
+				my::hook::detach(ExtTextOutW);
+				my::hook::detach(GetSysColor);
+				my::hook::detach(GetSysColorBrush);
+				my::hook::detach(DrawTextW);
+				my::hook::detach(DrawTextExW);
 			}
 
 			return TRUE;
