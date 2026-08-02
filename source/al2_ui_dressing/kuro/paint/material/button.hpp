@@ -8,11 +8,6 @@ namespace apn::dark::kuro::paint
 	inline struct button_material_t : material_t
 	{
 		//
-		// TRUEの場合は矢印をボタンのように描画します。
-		//
-		BOOL flag_arrow_as_button = FALSE;
-
-		//
 		// マテリアルの初期化処理を実行します。
 		//
 		virtual void on_init_material() override

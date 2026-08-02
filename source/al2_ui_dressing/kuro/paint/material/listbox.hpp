@@ -25,7 +25,7 @@ namespace apn::dark::kuro::paint
 				style_t::color_e::TextDisable);
 
 			auto ets_selected = create_pigment(L"ListBox", L"Select",
-				style_t::color_e::ButtonBodySelect,
+				style_t::color_e::TextSelect,
 				{},
 				style_t::color_e::Text);
 

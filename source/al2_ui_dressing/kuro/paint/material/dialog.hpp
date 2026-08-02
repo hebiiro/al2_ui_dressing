@@ -30,7 +30,7 @@ namespace apn::dark::kuro::paint
 				style_t::color_e::Text);
 
 			auto disabled = create_pigment(L"Dialog", L"Disable",
-				style_t::color_e::ButtonBodyDisable,
+				style_t::color_e::Background,
 				{},
 				style_t::color_e::TextDisable);
 
