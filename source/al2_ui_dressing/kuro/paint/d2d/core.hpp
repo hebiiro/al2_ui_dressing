@@ -108,7 +108,7 @@ namespace apn::dark::kuro::paint::d2d
 			MY_TRACE_FUNC("");
 
 			// 後始末処理が完了済みの場合は何もしません。
-			if (flag_is_uninitialized) return TRUE;
+			if (flag_is_uninitialized) return FALSE;
 
 			if (!d2d_factory)
 				if (FAILED(create_factory())) return FALSE;
