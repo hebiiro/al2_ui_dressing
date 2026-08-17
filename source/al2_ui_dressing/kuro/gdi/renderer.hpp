@@ -481,7 +481,7 @@ namespace apn::dark::kuro::gdi
 				auto state_id = ETS_NORMAL;
 
 				if (auto pigment = palette.get(part_id, state_id))
-					paint::stylus.draw_rect(dc, rc, pigment);
+					paint::stylus.draw_rect(dc, &corner_rc, pigment);
 			}
 
 			return 0;
