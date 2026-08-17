@@ -111,8 +111,7 @@ namespace apn::dark
 		{
 			MY_TRACE_FUNC("");
 
-			return ::EnumWindows(
-				[](HWND hwnd, LPARAM l_param)
+			return ::EnumWindows([](HWND hwnd, LPARAM l_param)
 			{
 				auto pid = DWORD {};
 				auto tid = ::GetWindowThreadProcessId(hwnd, &pid);
@@ -125,44 +124,22 @@ namespace apn::dark
 		}
 
 		//
-		// 指定されたウィンドウとその子ウィンドウを再描画します。
+		// 指定されたウィンドウとその子孫ウィンドウを再描画します。
 		//
 		inline static BOOL redraw_window(HWND hwnd)
 		{
 //			MY_TRACE_FUNC("{/hex}", hwnd);
 
+			// 子孫ウィンドウを列挙します。
+
+			// ウィンドウキャプションを再描画します。
 			if (::GetWindowLong(hwnd, GWL_STYLE) & WS_CAPTION)
 				::SendMessage(hwnd, WM_ACTIVATE, hwnd == ::GetActiveWindow(), 0);
 
-			::RedrawWindow(hwnd, 0, 0,
+			// ウィンドウを再描画します。
+			return ::RedrawWindow(hwnd, 0, 0,
 				RDW_ERASE | RDW_FRAME | RDW_INTERNALPAINT |
 				RDW_INVALIDATE | RDW_ALLCHILDREN);
-
-			return ::EnumChildWindows(hwnd,
-				[](HWND hwnd, LPARAM l_param)
-			{
-#if 0 // aviutl2では必要ない処理だと思われます。
-				auto class_name = my::get_class_name(hwnd);
-
-				if (class_name == TRACKBAR_CLASS)
-				{
-					// トラックバー用の処理です。
-					::SendMessage(hwnd, WM_SETFOCUS, 0, 0);
-				}
-				else if (class_name == WC_BUTTON)
-				{
-					// ボタン用の処理です。
-					auto icon = (HICON)::SendMessage(hwnd, BM_GETIMAGE, IMAGE_ICON, 0);
-					::SendMessage(hwnd, BM_SETIMAGE, IMAGE_ICON, (LPARAM)icon);
-				}
-				else
-#endif
-				{
-					redraw_window(hwnd);
-				}
-
-				return TRUE;
-			}, 0);
 		}
 
 		//

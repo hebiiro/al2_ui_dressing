@@ -227,36 +227,27 @@ namespace apn::dark::kuro::gdi
 		BOOL init(HWND hwnd)
 		{
 			MY_TRACE_FUNC("");
-#if 1
+
 			// 既存のウィンドウにアタッチするために
-			// カレントスレッドのウィンドウを列挙します。
+			// カレントスレッドのトップレベルウィンドウを列挙します。
 			::EnumThreadWindows(::GetCurrentThreadId(), [](HWND hwnd, LPARAM l_param)
 			{
-				//
-				// この関数はレンダラーをウィンドウに関連付けます。
-				//
-				const auto attach_renderer_to = [](HWND hwnd, LPARAM l_param)
-				{
-					// レンダラーをウィンドウに関連付けます。
-					manager.attach_renderer(hwnd);
+				// トップレベルウィンドウにレンダラーを関連付けます。
+				manager.attach_renderer(hwnd);
 
-					// 子ウィンドウを再帰的に列挙します。
-					::EnumChildWindows(hwnd, (WNDENUMPROC)l_param, l_param);
+				// 子孫ウィンドウを列挙します。
+				::EnumChildWindows(hwnd, [](HWND hwnd, LPARAM l_param)
+				{
+					// 子孫ウィンドウにレンダラーを関連付けます。
+					manager.attach_renderer(hwnd);
 
 					// 列挙を続けます。
 					return TRUE;
-				};
-
-				// レンダラーをウィンドウに関連付けます。
-				attach_renderer_to(hwnd, (LPARAM)(WNDENUMPROC)attach_renderer_to);
+				}, 0);
 
 				// 列挙を続けます。
 				return TRUE;
 			}, 0);
-#else
-			// aviutl2ウィンドウにレンダラーを関連付けます。
-			attach_renderer(hwnd);
-#endif
 
 			// aviutl2ウィンドウがアクティブな場合は
 			// WM_ACTIVATEを送信してNC領域の配色を更新させます。
