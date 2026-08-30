@@ -105,41 +105,33 @@ namespace apn::dark
 		}
 
 		//
-		// プロセス内のすべてのウィンドウを再描画します。
+		// カレントスレッド内のすべてのウィンドウを再描画します。
 		//
 		virtual BOOL redraw() override
 		{
 			MY_TRACE_FUNC("");
 
-			return ::EnumWindows([](HWND hwnd, LPARAM l_param)
+			// カレントスレッドのトップレベルウィンドウを列挙します。
+			return ::EnumThreadWindows(::GetCurrentThreadId(), [](HWND hwnd, LPARAM l_param)
 			{
-				auto pid = DWORD {};
-				auto tid = ::GetWindowThreadProcessId(hwnd, &pid);
-
-				if (pid == ::GetCurrentProcessId())
-					redraw_window(hwnd);
+//				MY_TRACE_FUNC("{/hex}", hwnd);
+#if 0 // RDW_FRAMEを指定すれば、キャプションも再描画されるらしいです。
+				// ウィンドウがキャプションを持つ場合は
+				if (::GetWindowLong(hwnd, GWL_STYLE) & WS_CAPTION)
+				{
+					// ウィンドウキャプションを再描画します。
+					// ただし、::SendMessage()を使用すると、
+					// 別スレッドのウィンドウの場合はデッドロックします。
+					::PostMessage(hwnd, WM_ACTIVATE, hwnd == ::GetActiveWindow(), 0);
+				}
+#endif
+				// ウィンドウを再描画します。
+				return ::RedrawWindow(hwnd, 0, 0,
+					RDW_ERASE | RDW_FRAME | RDW_INTERNALPAINT |
+					RDW_INVALIDATE | RDW_ALLCHILDREN);
 
 				return TRUE;
 			}, 0);
-		}
-
-		//
-		// 指定されたウィンドウとその子孫ウィンドウを再描画します。
-		//
-		inline static BOOL redraw_window(HWND hwnd)
-		{
-//			MY_TRACE_FUNC("{/hex}", hwnd);
-
-			// 子孫ウィンドウを列挙します。
-
-			// ウィンドウキャプションを再描画します。
-			if (::GetWindowLong(hwnd, GWL_STYLE) & WS_CAPTION)
-				::SendMessage(hwnd, WM_ACTIVATE, hwnd == ::GetActiveWindow(), 0);
-
-			// ウィンドウを再描画します。
-			return ::RedrawWindow(hwnd, 0, 0,
-				RDW_ERASE | RDW_FRAME | RDW_INTERNALPAINT |
-				RDW_INVALIDATE | RDW_ALLCHILDREN);
 		}
 
 		//
