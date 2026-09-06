@@ -107,9 +107,7 @@
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing" 2&gt;nul
-
-copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
+      <Command>copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
 copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
 </Command>
     </PostBuildEvent>
@@ -136,9 +134,7 @@ copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing" 2&gt;nul
-
-copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
+      <Command>copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
 copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
 </Command>
     </PostBuildEvent>
@@ -159,9 +155,7 @@ copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing" 2&gt;nul
-
-copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
+      <Command>copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
 copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
 </Command>
     </PostBuildEvent>
@@ -186,9 +180,7 @@ copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing" 2&gt;nul
-
-copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
+      <Command>copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
 copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
 </Command>
     </PostBuildEvent>
@@ -207,6 +199,11 @@ copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\
   </ItemGroup>
   <ItemGroup>
     <None Include="main.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\al2_ui_dressing\al2_ui_dressing.vcxproj">
+      <Project>{4dc9992f-1b75-4e8b-8343-68ddaab2d8e0}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
