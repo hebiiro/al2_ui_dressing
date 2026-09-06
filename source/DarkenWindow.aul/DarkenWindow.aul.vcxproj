@@ -24,6 +24,7 @@
     <ProjectGuid>{d30db443-e8be-4f53-80a0-6d9851c31db5}</ProjectGuid>
     <RootNamespace>DarkenWindow_aul</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>DarkenWindow</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -78,10 +79,18 @@
     <Import Project="..\..\..\al2.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetExt>.aul</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <TargetExt>.aul</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetExt>.aul</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TargetExt>.aul</TargetExt>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -98,9 +107,10 @@
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetName)"
-mkdir "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing" 2&gt;nul
-copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\$(TargetName)"
+      <Command>mkdir "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing" 2&gt;nul
+
+copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
+copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -126,9 +136,10 @@ copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetName)"
-mkdir "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing" 2&gt;nul
-copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\$(TargetName)"
+      <Command>mkdir "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing" 2&gt;nul
+
+copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
+copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -148,9 +159,10 @@ copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetName)"
-mkdir "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing" 2&gt;nul
-copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\$(TargetName)"
+      <Command>mkdir "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing" 2&gt;nul
+
+copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
+copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -174,9 +186,10 @@ copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetName)"
-mkdir "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing" 2&gt;nul
-copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\$(TargetName)"
+      <Command>mkdir "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing" 2&gt;nul
+
+copy /Y "$(TargetPath)" "$(aviutl2_dir)\data\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
+copy /Y "$(TargetPath)" "$(pack_dir)\al2_ui_dressing\Plugin\al2\al2_ui_dressing\$(TargetFileName)"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
