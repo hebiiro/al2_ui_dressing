@@ -55,12 +55,21 @@ namespace apn::dark::kuro::gdi
 			//
 			// この関数は指定された文字列が指定された正規表現パターンにマッチする場合はTRUEを返します。
 			//
-			const auto match = [](const std::wstring& text, const std::wstring& pattern) -> BOOL
+			constexpr auto match = [](const std::wstring& text, const std::wstring& pattern) -> BOOL
 			{
 				if (pattern.empty()) return FALSE;
 
 				return std::regex_search(text, std::wregex(pattern));
 			};
+
+			//
+			// この関数は指定文字列から始まる場合はTRUEを返します。
+			//
+			constexpr auto starts_with = [](LPCWSTR lhs, LPCWSTR rhs) -> BOOL
+			{
+				return ::StrStrIW(lhs, rhs) == lhs;
+			};
+
 
 //			if (class_name == L"#32768") return std::make_shared<menu_renderer_t>();
 			if (class_name == L"#32770")
@@ -109,6 +118,16 @@ namespace apn::dark::kuro::gdi
 			}
 			if (class_name == TOOLBARCLASSNAME) return std::make_shared<toolbar_renderer_t>();
 
+			// delphi系フレームワークのウィンドウです。
+			if (class_name == L"TPanel") return std::make_shared<delphi::panel_renderer_t>();
+			if (class_name == L"TComboBox") return std::make_shared<delphi::combobox_renderer_t>();
+			if (class_name == L"THintWindow") return std::make_shared<tooltip_renderer_t>();
+			if (class_name == L"TEdit") return std::make_shared<editbox_renderer_t>();
+			if (class_name == L"TListBox") return std::make_shared<listbox_renderer_t>();
+			if (class_name == L"TTreeView") return std::make_shared<treeview_renderer_t>();
+			if (class_name == L"TSerifSceneMsgListBoxEditor") return std::make_shared<renderer_nc_t>();
+			if (starts_with(class_name.c_str(), L"TFrame")) return std::make_shared<delphi::frame_renderer_t>();
+
 			// aviutl2のメインウィンドウです。
 			if (class_name == L"aviutl2Manager") return std::make_shared<aviutl2_renderer_t>();
 
@@ -152,13 +171,6 @@ namespace apn::dark::kuro::gdi
 
 				// 「拡張 x264 出力(GUI) Ex」の設定ダイアログです。
 				{
-					//
-					// この関数は指定文字列から始まる場合はTRUEを返します。
-					//
-					const auto starts_with = [](LPCWSTR lhs, LPCWSTR rhs) {
-						return ::StrStrIW(lhs, rhs) == lhs;
-					};
-
 					// 検索対象のクラス名のプレフィックスです。
 					const auto prefix = std::wstring(L"WindowsForms10.");
 
@@ -189,6 +201,21 @@ namespace apn::dark::kuro::gdi
 			// 強制的に関連付ける場合は
 			if (force)
 			{
+#if 0
+				// ウィンドウがnc領域を持つ場合は
+				auto style = my::get_style(hwnd);
+				auto ex_style = my::get_ex_style(hwnd);
+				if (style & WS_CAPTION ||
+					style & WS_HSCROLL ||
+					style & WS_VSCROLL ||
+					ex_style & WS_EX_WINDOWEDGE ||
+					ex_style & WS_EX_CLIENTEDGE ||
+					ex_style & WS_EX_STATICEDGE)
+				{
+					// nc領域対応のレンダラーを返します。
+					return std::make_shared<renderer_nc_t>();
+				}
+#endif
 				// 汎用レンダラーを返します。
 				return std::make_shared<renderer_t>();
 			}
@@ -221,6 +248,7 @@ namespace apn::dark::kuro::gdi
 				}
 			}
 		}
+
 		//
 		// 初期化処理を実行します。
 		//

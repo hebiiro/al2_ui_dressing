@@ -56,6 +56,9 @@
     <Filter Include="_\root">
       <UniqueIdentifier>{a151abcc-e007-4cef-af06-e3b5a0ca4d00}</UniqueIdentifier>
     </Filter>
+    <Filter Include="kuro\gdi\renderer\delphi">
+      <UniqueIdentifier>{9c74cdca-d318-4baf-8507-66e0331c3e3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -364,6 +367,15 @@
       <Filter>kuro\paint\d2d</Filter>
     </ClInclude>
     <ClInclude Include="debug.hpp" />
+    <ClInclude Include="kuro\gdi\renderer\delphi\combobox.hpp">
+      <Filter>kuro\gdi\renderer\delphi</Filter>
+    </ClInclude>
+    <ClInclude Include="kuro\gdi\renderer\delphi\panel.hpp">
+      <Filter>kuro\gdi\renderer\delphi</Filter>
+    </ClInclude>
+    <ClInclude Include="kuro\gdi\renderer\delphi\frame.hpp">
+      <Filter>kuro\gdi\renderer\delphi</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="main.def">
