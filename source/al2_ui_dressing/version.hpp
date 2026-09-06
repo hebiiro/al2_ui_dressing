@@ -9,6 +9,6 @@ namespace apn::dark
 		//
 		// コンストラクタです。
 		//
-		version_t() : version_base_t(L"UIドレッシングMOD", L"🐍UIドレッシングMOD🔖", L"r8") {}
+		version_t() : version_base_t(L"UIドレッシングMOD", L"🐍UIドレッシングMOD🔖", L"r9") {}
 	} version;
 }
