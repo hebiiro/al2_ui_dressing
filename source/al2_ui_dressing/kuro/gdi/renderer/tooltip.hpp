@@ -2,7 +2,7 @@
 
 namespace apn::dark::kuro::gdi
 {
-	struct tooltip_renderer_t : renderer_t
+	struct tooltip_renderer_t : renderer_nc_t
 	{
 		const paint::palette_t& palette = paint::tooltip_material.palette;
 
@@ -59,16 +59,27 @@ namespace apn::dark::kuro::gdi
 		{
 			MY_TRACE_FUNC("{/hex}, {/}, {/}, {/hex}, {/}, {/}, {/}, {/hex}, {/hex}, {/hex}", dc, x, y, options, safe_string(rc), text, c, dx, ::GetBkColor(dc), ::GetTextColor(dc));
 
-			auto part_id = TTP_STANDARD;
-			auto state_id = (int)TTSS_NORMAL;
-
-			if (my::get_style(current_state->hwnd) & TTS_BALLOON)
-				part_id = TTP_BALLOON, state_id = TTBS_NORMAL;
-
-			if (auto pigment = palette.get(part_id, state_id))
-				return paint::stylus.ext_text_out(dc, x, y, options, rc, text, c, dx, pigment);
-
 			return hive.orig.ExtTextOutW(dc, x, y, options, rc, text, c, dx);
+		}
+
+		virtual BOOL on_draw_text_ex_w(message_state_t* current_state, HDC dc, LPWSTR text, int c, LPRECT rc, UINT flags, LPDRAWTEXTPARAMS dtp) override
+		{
+			MY_TRACE_FUNC("dc = {/hex}, flags = {/hex}, rc = ({/}), text = {/}, bk_color = {/hex}, text_color = {/hex}",
+				dc, flags, safe_string(rc), safe_string(text, c), ::GetBkColor(dc), ::GetTextColor(dc));
+
+			if (!(flags & (DT_CALCRECT | DT_MODIFYSTRING)) && !dtp)
+			{
+				auto part_id = TTP_STANDARD;
+				auto state_id = (int)TTSS_NORMAL;
+
+				if (my::get_style(current_state->hwnd) & TTS_BALLOON)
+					part_id = TTP_BALLOON, state_id = TTBS_NORMAL;
+
+				if (auto pigment = palette.get(part_id, state_id))
+					return paint::stylus.d2d_draw_text(dc, rc, text, c, flags, pigment);
+			}
+
+			return hive.orig.DrawTextExW(dc, text, c, rc, flags, dtp);
 		}
 
 		virtual BOOL on_pat_blt(message_state_t* current_state, HDC dc, int x, int y, int w, int h, DWORD rop) override
