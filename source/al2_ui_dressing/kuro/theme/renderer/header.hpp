@@ -10,6 +10,11 @@ namespace apn::dark::kuro::theme
 		const paint::palette_t& palette = paint::header_material.palette;
 
 		//
+		// システムのdpiを取得しておきます。
+		//
+		inline static const auto dpi = ::GetDpiForSystem();
+
+		//
 		// ドロップダウンボタンを描画します。
 		//
 		BOOL draw_drop_down_button(HDC dc, LPCRECT rc, int part_id, int state_id)
@@ -27,8 +32,6 @@ namespace apn::dark::kuro::theme
 		//
 		BOOL draw_sort_button(HDC dc, LPCRECT rc, int part_id, int state_id, LPCWSTR font_name, WCHAR char_code)
 		{
-			auto dpi = ::GetDpiForSystem();
-
 			auto rc2 = *rc;
 			rc2.top -= ::MulDiv(2, dpi, USER_DEFAULT_SCREEN_DPI);
 			rc2.bottom += ::MulDiv(6, dpi, USER_DEFAULT_SCREEN_DPI);

@@ -14,9 +14,6 @@ namespace apn::dark::kuro::hook
 		{
 			MY_TRACE_FUNC("");
 
-			auto dpi = ::GetDpiForSystem();
-			MY_TRACE_INT(dpi);
-
 			// APIフックを開始します。
 			{
 				my::hook::detours detours;

@@ -17,6 +17,29 @@ namespace apn::dark::kuro::theme
 			// テーマハンドルとレンダラーを関連付けます。
 			// テーマハンドルを開くとフック関数内でレンダラーと関連付けされます。
 			{
+#if 0
+				{
+					// aviutl2の固定サイズ:拡大サイズ
+
+					// DPIを取得します。
+					auto dpi_1 = ::GetDpiFromDpiAwarenessContext(DPI_AWARENESS_CONTEXT_UNAWARE); // 96:96
+					auto dpi_2 = ::GetDpiFromDpiAwarenessContext(DPI_AWARENESS_CONTEXT_SYSTEM_AWARE); // 168:168
+					auto dpi_3 = ::GetDpiFromDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE); // 0:0
+					auto dpi_4 = ::GetDpiFromDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2); // 0:0
+					auto dpi_5 = ::GetDpiFromDpiAwarenessContext(DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED); // 96:96
+
+					// システムのdpiを取得します。
+					auto system_dpi = ::GetDpiForSystem(); // 168:168
+					MY_TRACE_INT(system_dpi);
+
+					// ウィンドウのDPIを取得します。
+					auto window_dpi = ::GetDpiForWindow(hwnd); // 168:168
+					MY_TRACE_INT(window_dpi);
+
+					// dpiはシステム/ウィンドウ、固定サイズ/拡大サイズいずれの設定でも
+					// 常にOSの設定で指定されている値(例えば175%に設定しているならなら96*1.75=168)になります。
+				}
+#endif
 				// ウィンドウのDPIを取得します。
 				auto dpi = ::GetDpiForWindow(hwnd);
 				MY_TRACE_INT(dpi);

@@ -79,37 +79,17 @@ namespace apn::dark::kuro::gdi::comdlg32
 				}
 			case WM_INITDIALOG:
 				{
-#if 1
+					// スコープ終了時(デフォルト処理後)の処理です。
 					my::scope_exit scope_exit([&]()
 					{
-#if 1
 						auto toolbar_rc = my::get_window_rect(top_right_toolbar);
 						auto combobox_rc = my::get_window_rect(top_combobox);
 						auto h = my::get_height(combobox_rc) + (combobox_rc.top - toolbar_rc.top) * 2;
 
 						// ボタンの位置が上部コンボボックスと水平になるようにします。
 						::SendMessage(top_right_toolbar, TB_SETBUTTONSIZE, 0, MAKELPARAM(h, h));
-#elif 1
-						auto c = (int)::SendMessage(top_right_toolbar, TB_BUTTONCOUNT, 0, 0);
-
-						auto rc = my::get_client_rect(top_right_toolbar);
-						auto w = my::get_width(rc) / (c + 1);
-						auto h = my::get_height(rc);
-
-						// ボタンサイズをクライアント領域いっぱいに広げます。
-						::SendMessage(top_right_toolbar, TB_SETBUTTONSIZE, 0, MAKELPARAM(w, h));
-#else
-						// DPIを取得します。
-						auto dpi = ::GetDpiFromDpiAwarenessContext(DPI_AWARENESS_CONTEXT_SYSTEM_AWARE);
-
-						// ボタンサイズをDPIで補正します。
-						auto size = my::lp_to_pt(::SendMessage(top_right_toolbar, TB_GETBUTTONSIZE, 0, 0));
-						size.x = ::MulDiv(size.x, dpi, USER_DEFAULT_SCREEN_DPI);
-						size.y = ::MulDiv(size.y, dpi, USER_DEFAULT_SCREEN_DPI);
-						::SendMessage(top_right_toolbar, TB_SETBUTTONSIZE, 0, my::pt_to_lp(size));
-#endif
 					});
-#endif
+
 					return __super::on_subclass_proc(hwnd, message, w_param, l_param);
 				}
 			}
