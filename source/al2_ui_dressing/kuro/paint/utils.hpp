@@ -1,5 +1,117 @@
 ﻿#pragma once
 
+namespace apn::dark::kuro::paint::symbol
+{
+#if 1
+	//
+	// シンボル描画用のフォント名です。
+	//
+	inline static constexpr auto k_font_name = L"Segoe Fluent Icons";
+
+	//
+	// シンボル描画用の縦書きフォント名です。
+	//
+	inline static constexpr auto k_vert_font_name = L"@" L"Segoe Fluent Icons";
+#else
+	//
+	// シンボル描画用のフォント名です。
+	//
+	inline static constexpr auto k_font_name = L"Segoe MDL2 Assets";
+
+	//
+	// シンボル描画用の縦書きフォント名です。
+	//
+	inline static constexpr auto k_vert_font_name = L"@" L"Segoe MDL2 Assets";
+#endif
+	//
+	// シンボルの文字コードです。
+	//
+	enum : wchar_t
+	{
+		k_chevron_down = 0xe70d, // 下矢印
+		k_chevron_up = 0xe70e, // 上矢印
+		k_chevron_left = 0xe76b, // 左矢印
+		k_chevron_right = 0xe76c, // 右矢印
+//		k_inking_caret = 0xed65, // 右下矢印
+
+		k_chevron_up_small = 0xe96d, // 小さい上矢印
+		k_chevron_down_small = 0xe96e, // 小さい下矢印
+		k_chevron_left_small = 0xe96f, // 小さい左矢印
+		k_chevron_right_small = 0xe970, // 小さい右矢印
+
+		k_chevron_up_med = 0xe971, // 中くらいの上矢印
+		k_chevron_down_med = 0xe972, // 中くらいの下矢印
+		k_chevron_left_med = 0xe973, // 中くらいの左矢印
+		k_chevron_right_med = 0xe974, // 中くらいの右矢印
+
+		k_caret_solid_left = 0xf08d, // 三角左矢印
+		k_caret_solid_down = 0xf08e, // 三角下矢印
+		k_caret_solid_right = 0xf08f, // 三角右矢印
+		k_caret_solid_up = 0xf090, // 三角上矢印
+
+		k_caret_left8 = 0xedd5,
+		k_caret_right8 = 0xedd6,
+		k_caret_up8 = 0xedd7,
+		k_caret_down8 = 0xedd8,
+		k_caret_left_solid8 = 0xedd9,
+		k_caret_right_solid8 = 0xedda,
+		k_caret_up_solid8 = 0xeddb,
+		k_caret_down_solid8 = 0xeddc,
+		k_caret_bottom_right_solid_center8 = 0xf169,
+
+		k_global_nav_button = 0xe700,
+		k_brightness = 0xe706,
+		k_edit = 0xe70f, // 編集
+		k_add = 0xe710, // 追加
+		k_cancel = 0xe711, // キャンセル
+		k_more = 0xe712,
+		k_settings = 0xe713,
+		k_zoom = 0xe71e,
+		k_zoom_out = 0xe71f,
+		k_search = 0xe721,
+		k_forward = 0xe72a, // ブラウザの「進む」
+		k_back = 0xe72b, // ブラウザの「戻る」
+		k_refresh = 0xe72c, // ブラウザの「更新」
+		k_share = 0xe72d, // ブラウザの「共有」
+		k_remove = 0xe738, // 削除
+		k_checkbox = 0xe739,
+		k_checkbox_composite = 0xe73a,
+		k_checkbox_fill = 0xe73b,
+		k_checkbox_indeterminate = 0xe73c,
+		k_checkbox_composite_reversed = 0xe73d,
+		k_check_mark = 0xe73e,
+		k_back_to_window = 0xe73f, // 「元に戻す」に使えるかもしれない。
+		k_fullScreen = 0xe740, // 「最大化」に使えるかもしれない。
+		k_sip_move = 0xe759, // 「四方向移動」に使えるかもしれない。
+		k_move = 0xe7c2, // 「四方向移動」
+		k_pan_mode = 0xece9, // 「四方向移動」に使えるかもしれない。
+
+		k_gripper_bar_horizontal = 0xe76f,
+		k_gripper_bar_vertical = 0xe784,
+		k_gripper_resize = 0xe788,
+		k_grid_view = 0xf0e2,
+		k_grid_view_group = 0xf207,
+		k_add_to= 0xecc8,
+		k_remove_from= 0xecc9,
+		k_radio_btn_off= 0xecca,
+		k_radio_btn_on= 0xeccb,
+		k_radio_bullet = 0xe915, // メニューのラジオバレット
+		k_radio_bullet2 = 0xeccc, // メニューのラジオバレット
+
+		k_chrome_close = 0xe8bb, // 「閉じる」
+		k_chrome_minimize = 0xe921, // 「最小化」
+		k_chrome_maximize = 0xe922, // 「最大化」
+		k_chrome_restore = 0xe923, // 「元のサイズに戻す」
+
+		k_chrome_close_contrast = 0xef2c,
+		k_chrome_minimize_contrast = 0xef2d,
+		k_chrome_maximize_contrast = 0xef2e,
+		k_chrome_restore_contrast = 0xef2f,
+
+		k_eye_dropper = 0xef3c, // スポイト
+	};
+}
+
 namespace apn::dark::kuro::paint
 {
 	//

@@ -17,6 +17,33 @@ namespace apn::dark::kuro::theme
 		//
 		RECT popup_item_rect = {};
 
+		//
+		// アイコンを描画します。
+		//
+		BOOL draw_icon(HDC dc, LPCRECT rc, int part_id, int state_id, wchar_t char_code)
+		{
+			auto icon_rc = *rc;
+			auto w = my::get_width(icon_rc);
+			auto h = my::get_height(icon_rc);
+
+			// 矩形が縦長の場合は
+			if (w < h)
+			{
+				// 横幅を基準にして矩形を正方形にします。
+				icon_rc.top = (icon_rc.top + icon_rc.bottom - w) / 2;
+				icon_rc.bottom = icon_rc.top + w;
+			}
+			// 矩形が横長の場合は
+			else
+			{
+				// 縦幅を基準にして矩形を正方形にします。
+				icon_rc.left = (icon_rc.left + icon_rc.right - h) / 2;
+				icon_rc.right = icon_rc.left + h;
+			}
+
+			return paint::stylus.d2d_draw_icon(dc, &icon_rc, palette, part_id, state_id, paint::symbol::k_font_name, char_code);
+		}
+
 		virtual HRESULT on_draw_theme_background(HTHEME theme, HDC dc, int part_id, int state_id, LPCRECT rc, LPCRECT rc_clip) override
 		{
 			MY_TRACE_FUNC("{/hex}, {/hex}, {/}, {/}, ({/}), ({/})", theme, dc, part_id, state_id, safe_string(rc), safe_string(rc_clip));
@@ -171,9 +198,7 @@ namespace apn::dark::kuro::theme
 						case MC_CHECKMARKNORMAL:
 						case MC_CHECKMARKDISABLED:
 							{
-//								if (paint::stylus.d2d_draw_icon(dc, rc, palette, part_id, state_id, paint::c_pseudo, L'✔')) // D2Dだと紫
-//								if (paint::stylus.d2d_draw_icon(dc, rc, palette, part_id, state_id, paint::c_pseudo, L'☑')) // GDIだと背景が白、D2Dだと紫
-								if (paint::stylus.d2d_draw_icon(dc, rc, palette, part_id, state_id, paint::c_pseudo, L'✅')) // GDIだと背景が透明、D2Dだと緑
+								if (paint::stylus.d2d_draw_icon(dc, rc, palette, part_id, state_id, paint::symbol::k_font_name, paint::symbol::k_check_mark))
 									return S_OK;
 
 								break;
@@ -181,7 +206,7 @@ namespace apn::dark::kuro::theme
 						case MC_BULLETNORMAL:
 						case MC_BULLETDISABLED:
 							{
-								if (paint::stylus.d2d_draw_icon(dc, rc, palette, part_id, state_id, paint::c_pseudo, L'⬤'))
+								if (paint::stylus.d2d_draw_icon(dc, rc, palette, part_id, state_id, paint::symbol::k_font_name, paint::symbol::k_radio_bullet2))
 									return S_OK;
 
 								break;
@@ -196,35 +221,35 @@ namespace apn::dark::kuro::theme
 						::InflateRect(&rc2, 6, 6);
 						::OffsetRect(&rc2, 0, -2);
 
-						if (paint::stylus.d2d_draw_icon(dc, &rc2, palette, part_id, state_id, paint::c_symbol, 0xE013))
+						if (paint::stylus.d2d_draw_icon(dc, rc, palette, part_id, state_id, paint::symbol::k_font_name, paint::symbol::k_chevron_right_small))
 							return S_OK;
 
 						break;
 					}
 				case MENU_SYSTEMCLOSE:
 					{
-						if (paint::stylus.d2d_draw_icon(dc, rc, palette, part_id, state_id, L"Webdings", 0x0072))
+						if (draw_icon(dc, rc, part_id, state_id, paint::symbol::k_chrome_close))
 							return S_OK;
 
 						break;
 					}
 				case MENU_SYSTEMMAXIMIZE:
 					{
-						if (paint::stylus.d2d_draw_icon(dc, rc, palette, part_id, state_id, L"Webdings", 0x0031))
+						if (draw_icon(dc, rc, part_id, state_id, paint::symbol::k_chrome_maximize))
 							return S_OK;
 
 						break;
 					}
 				case MENU_SYSTEMMINIMIZE:
 					{
-						if (paint::stylus.d2d_draw_icon(dc, rc, palette, part_id, state_id, L"Webdings", 0x0030))
+						if (draw_icon(dc, rc, part_id, state_id, paint::symbol::k_chrome_minimize))
 							return S_OK;
 
 						break;
 					}
 				case MENU_SYSTEMRESTORE:
 					{
-						if (paint::stylus.d2d_draw_icon(dc, rc, palette, part_id, state_id, L"Webdings", 0x0032))
+						if (draw_icon(dc, rc, part_id, state_id, paint::symbol::k_chrome_restore))
 							return S_OK;
 
 						break;
