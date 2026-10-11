@@ -17,13 +17,13 @@ namespace apn::dark::kuro::paint
 			MY_TRACE_FUNC("");
 
 			active = create_pigment(L"Window", L"Active",
-				style_t::color_e::Background,
-				style_t::color_e::WindowBorder,
+				style_t::color_e::GroupingHover,
+				style_t::color_e::GroupingSeparator,
 				style_t::color_e::Text);
 
 			inactive = create_pigment(L"Window", L"Inactive",
-				style_t::color_e::TitleHeader,
-				style_t::color_e::TitleHeader,
+				style_t::color_e::Grouping,
+				style_t::color_e::GroupingSeparator,
 				style_t::color_e::TextDisable);
 		}
 
