@@ -53,11 +53,11 @@ namespace apn::dark::kuro::theme
 					from_vsclass.set(class_list, renderer);
 
 					// テーマハンドルを開きます。
-					my::theme::unique_ptr<> theme(::OpenThemeData(hwnd, class_list));
+					my::theme::unique_ptr theme(::OpenThemeData(hwnd, class_list));
 					MY_TRACE("{/} = {/hex}\n", class_list, theme.get());
 
 					// 高DPI用のテーマハンドルを開きます。
-					my::theme::unique_ptr<> theme_for_dpi(::OpenThemeDataForDpi(hwnd, class_list, dpi));
+					my::theme::unique_ptr theme_for_dpi(::OpenThemeDataForDpi(hwnd, class_list, dpi));
 					MY_TRACE("{/} {/} = {/hex}\n", class_list, dpi, theme_for_dpi.get());
 
 					// テーマハンドルを閉じるとハンドル値が変わってしまうので、閉じないようにします。

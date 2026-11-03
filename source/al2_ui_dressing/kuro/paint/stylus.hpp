@@ -167,8 +167,8 @@ namespace apn::dark::kuro::paint
 	//
 	struct icon_attribute_t
 	{
-		my::gdi::unique_ptr<HFONT> font;
-		my::gdi::selector font_selector;
+		my::gdi<HFONT>::unique_ptr font;
+		my::gdi<HFONT>::selector font_selector;
 
 		icon_attribute_t(HDC dc, LPCRECT rc, LPCWSTR font_name, int font_weight)
 			: font(::CreateFontW(
@@ -201,7 +201,7 @@ namespace apn::dark::kuro::paint
 			}
 			else
 			{
-				my::gdi::unique_ptr<HBRUSH> brush(
+				my::gdi<HBRUSH>::unique_ptr brush(
 					::CreateSolidBrush(pigment->background.get_win32_color()));
 
 				return hive.orig.FillRect(dc, rc, brush.get());
@@ -321,7 +321,7 @@ namespace apn::dark::kuro::paint
 			// このスコープ内では::ExtTextOutW()をフックしないようにします。
 			my::locker_t locker(&ext_text_out_lock);
 #if 0 // テスト用コードです。
-			my::theme::unique_ptr<> theme(::OpenThemeData(nullptr, L"Window"));
+			my::theme::unique_ptr theme(::OpenThemeData(nullptr, L"Window"));
 
 			DTTOPTS opts = { sizeof(DTTOPTS) };
 			opts.dwFlags = DTT_TEXTCOLOR | DTT_SHADOWCOLOR | DTT_SHADOWTYPE | DTT_SHADOWOFFSET;
