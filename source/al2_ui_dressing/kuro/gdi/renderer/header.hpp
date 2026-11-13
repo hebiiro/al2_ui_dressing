@@ -4,6 +4,16 @@ namespace apn::dark::kuro::gdi
 {
 	struct header_renderer_t : renderer_t
 	{
+		auto get_pigment()
+		{
+			const auto& palette = paint::header_material.palette;
+
+			auto part_id = HP_HEADERITEM;
+			auto state_id = HIS_NORMAL;
+
+			return palette.get(part_id, state_id);
+		}
+
 		virtual HBRUSH on_ctl_color(HWND hwnd, UINT message, HDC dc, HWND control, HBRUSH brush) override
 		{
 			MY_TRACE_FUNC("{/hex}, {/hex}, {/hex}, {/hex}, {/hex}, bk_color = {/hex}, text_color = {/hex}",
@@ -44,6 +54,10 @@ namespace apn::dark::kuro::gdi
 		{
 			MY_TRACE_FUNC("{/hex}, ({/}), {/hex}, {/hex}", dc, safe_string(rc), edge, flags);
 
+			// フィルタのボタンを描画します。
+			if (auto pigment = get_pigment())
+				return paint::stylus.draw_rect(dc, rc, pigment);
+
 			return hive.orig.DrawEdge(dc, rc, edge, flags);
 		}
 
@@ -63,26 +77,33 @@ namespace apn::dark::kuro::gdi
 
 		virtual BOOL on_ext_text_out_w(message_state_t* current_state, HDC dc, int x, int y, UINT options, LPCRECT rc, LPCWSTR text, UINT c, CONST INT* dx) override
 		{
-			MY_TRACE_FUNC("{/hex}, {/}, {/}, {/hex}, {/}, {/}, {/}, {/hex}, {/hex}, {/hex}", dc, x, y, options, safe_string(rc), text, c, dx, ::GetBkColor(dc), ::GetTextColor(dc));
-#if 0
-			if (!text && options == ETO_OPAQUE)
+			MY_TRACE_FUNC("dc = {/hex}, x = {/}, y = {/}, options = {/hex}, rc = ({/}), text = {/}, c = {/}, dx = {/hex}, bk_color = {/hex}, text_color = {/hex}",
+				dc, x, y, options, safe_string(rc), text, c, dx, ::GetBkColor(dc), ::GetTextColor(dc));
+
+			// 矩形を塗りつぶす場合は
+			if (options == ETO_OPAQUE && rc)
 			{
-				if (auto theme = skin::theme::manager.get_theme(VSCLASS_HEADER))
-				{
-					// 背景色を指定します。
-
-					auto state = skin::theme::manager.get_state(theme, 0, 1);
-
-					if (state && state->stuff.fill.color != CLR_NONE)
-					{
-						::SetBkColor(dc, state->stuff.fill.color);
-
-						return hive.orig.ExtTextOutW(dc, x, y, options, rc, text, c, dx);
-					}
-				}
+				// フィルタの背景を描画します。
+				if (auto pigment = get_pigment())
+					return paint::stylus.draw_rect(dc, rc, pigment);
 			}
-#endif
+
 			return hive.orig.ExtTextOutW(dc, x, y, options, rc, text, c, dx);
+		}
+
+		virtual BOOL on_draw_text_ex_w(message_state_t* current_state, HDC dc, LPWSTR text, int c, LPRECT rc, UINT flags, LPDRAWTEXTPARAMS dtp) override
+		{
+			MY_TRACE_FUNC("dc = {/hex}, flags = {/hex}, rc = ({/}), text = {/}, bk_color = {/hex}, text_color = {/hex}",
+				dc, flags, safe_string(rc), safe_string(text, c), ::GetBkColor(dc), ::GetTextColor(dc));
+
+			if (!(flags & (DT_CALCRECT | DT_MODIFYSTRING)) && !dtp)
+			{
+				// フィルタの文字列を描画します。
+				if (auto pigment = get_pigment())
+					return paint::stylus.d2d_draw_text(dc, rc, text, c, flags, pigment);
+			}
+
+			return hive.orig.DrawTextExW(dc, text, c, rc, flags, dtp);
 		}
 
 		virtual BOOL on_pat_blt(message_state_t* current_state, HDC dc, int x, int y, int w, int h, DWORD rop) override
